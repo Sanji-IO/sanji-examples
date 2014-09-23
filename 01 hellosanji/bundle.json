@@ -1,0 +1,22 @@
+{
+  "name": "hellosanji",
+  "version": "1.0",
+  "author": "Zack YL Shih",
+  "email": "ZackYL.Shih@moxa.com",
+  "description": "Example for Sanji SDK",
+  "license": "MOXA",
+  "main": "hellosanji.py",
+  "argument": "",
+  "priority": 20,
+  "hook": [],
+  "dependencies": {},
+  "repository": "",
+  "role": "model",
+  "ttl": 10,
+  "resources": [
+    {
+      "methods": ["get", "put"],
+      "resource": "/hellosanji"
+    }
+  ]
+}
