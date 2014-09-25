@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.7"
+install:
+  - pip install paho-mqtt
+  - pip install "git+https://github.com/Sanji-IO/sanji.git#egg=sanji"
+script: make test-all
+notifications:
+  slack:
+    rooms:
+      - sys:yeTvjm0bw1tX6MBWrfkVL5RG#travis
