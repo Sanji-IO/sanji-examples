@@ -13,7 +13,7 @@ class Hellosanji(Sanji):
         self.message = "Hello Sanji!"
 
     @Route(methods="get", resource="/hellosanji")
-    def get555(self, message, response):
+    def get(self, message, response):
         response(data={"message": self.message})
 
     @Route(methods="put", resource="/hellosanji")
