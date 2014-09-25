@@ -4,7 +4,7 @@ python:
 install:
   - pip install paho-mqtt
   - pip install "git+https://github.com/Sanji-IO/sanji.git#egg=sanji"
-script: make test-all
+script: make
 notifications:
   slack:
     rooms:
