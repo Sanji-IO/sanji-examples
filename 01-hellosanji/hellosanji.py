@@ -26,15 +26,15 @@ class Hellosanji(Sanji):
     @Route(methods="post", resource="/hellosanji")
     def post(self, message, response):
         if hasattr(message, "data"):
-            self.message = "call post()"
-            return response(data={"message": self.message})
+            self.message = {"id": 53}
+            return response(data=self.message)
         return response(code=400, data={"message": "Invalid Post Input."})
 
-    @Route(methods="delete", resource="/hellosanji")
+    @Route(methods="delete", resource="/hellosanji/:id")
     def delete(self, message, response):
-        if hasattr(message, "data"):
-            if "index" in message.data:
-                self.message = "delete index: %s" % message.data["index"]
+        if hasattr(message, "param"):
+            if "id" in message.param:
+                self.message = "delete index: %s" % message.param["id"]
                 return response()
 
         return response(code=400, data={"message": "Invalid Delete Input."})

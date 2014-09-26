@@ -15,8 +15,12 @@
   "ttl": 10,
   "resources": [
     {
-      "methods": ["get", "put"],
+      "methods": ["get", "put", "post"],
       "resource": "/hellosanji"
+    },
+    {
+      "methods": ["delete"],
+      "resource": "/hellosanji/:id"
     }
   ]
 }

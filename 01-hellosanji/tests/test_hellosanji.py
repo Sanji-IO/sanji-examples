@@ -54,7 +54,7 @@ class TestHellosanjiClass(unittest.TestCase):
 
         # case 1: post successfully
         def resp1(code=200, data=None):
-            self.assertEqual(self.hellosanji.message, "call post()")
+            self.assertTrue("id" in data)
 
         self.hellosanji.post(message=message, response=resp1, test=True)
 
@@ -69,7 +69,7 @@ class TestHellosanjiClass(unittest.TestCase):
 
     def test_delete(self):
         message = Message(
-            {"data": {"message": "call delete()", "index": 40}})
+            {"data": {"message": "call delete()"}, "param": {"id": 40}})
 
         # case 1: post successfully
         def resp1(code=200, data=None):
@@ -78,7 +78,7 @@ class TestHellosanjiClass(unittest.TestCase):
         self.hellosanji.delete(message=message, response=resp1, test=True)
 
         # case 2: delete bad request
-        del message.data["index"]
+        del message.param["id"]
 
         def resp2(code=200, data=None):
             self.assertEqual(400, code)
