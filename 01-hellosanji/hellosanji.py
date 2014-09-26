@@ -32,8 +32,12 @@ class Hellosanji(Sanji):
 
     @Route(methods="delete", resource="/hellosanji")
     def delete(self, message, response):
-        self.message = "call delete()"
-        response(data={"message": self.message})
+        if hasattr(message, "data"):
+            if "index" in message.data:
+                self.message = "delete index: %s" % message.data["index"]
+                return response()
+
+        return response(code=400, data={"message": "Invalid Delete Input."})
 
 
 if __name__ == '__main__':

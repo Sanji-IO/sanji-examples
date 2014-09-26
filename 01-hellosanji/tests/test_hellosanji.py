@@ -59,11 +59,32 @@ class TestHellosanjiClass(unittest.TestCase):
         self.hellosanji.post(message=message, response=resp1, test=True)
 
         # case 2: post bad request
+        del message.data
+
         def resp2(code=200, data=None):
             self.assertEqual(400, code)
-            self.assertEqual(data, {"message": "Invalid Post Input"})
+            self.assertEqual(data, {"message": "Invalid Post Input."})
 
         self.hellosanji.post(message=message, response=resp2, test=True)
+
+    def test_delete(self):
+        message = Message(
+            {"data": {"message": "call delete()", "index": 40}})
+
+        # case 1: post successfully
+        def resp1(code=200, data=None):
+            self.assertEqual(self.hellosanji.message, "delete index: 40")
+
+        self.hellosanji.delete(message=message, response=resp1, test=True)
+
+        # case 2: delete bad request
+        del message.data["index"]
+
+        def resp2(code=200, data=None):
+            self.assertEqual(400, code)
+            self.assertEqual(data, {"message": "Invalid Delete Input."})
+
+        self.hellosanji.delete(message=message, response=resp2, test=True)
 
 
 if __name__ == "__main__":
