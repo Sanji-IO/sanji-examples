@@ -1,0 +1,21 @@
+{
+  "name": "view",
+  "version": "1.0",
+  "author": "Zack YL Shih",
+  "email": "ZackYL.Shih@moxa.com",
+  "description": "View example for Sanji SDK",
+  "license": "MOXA",
+  "main": "view.py",
+  "argument": "",
+  "priority": 20,
+  "hook": [],
+  "dependencies": {},
+  "repository": "",
+  "role": "view",
+  "ttl": 10,
+  "resources": [
+    {
+      "resource": "/hellosanji"
+    }
+  ]
+}
