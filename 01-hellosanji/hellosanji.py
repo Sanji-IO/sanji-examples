@@ -23,6 +23,18 @@ class Hellosanji(Sanji):
             return response()
         return response(code=400, data={"message": "Invaild Input."})
 
+    @Route(methods="post", resource="/hellosanji")
+    def post(self, message, response):
+        if hasattr(message, "data"):
+            self.message = "call post()"
+            return response(data={"message": self.message})
+        return response(code=400, data={"message": "Invalid Post Input."})
+
+    @Route(methods="delete", resource="/hellosanji")
+    def delete(self, message, response):
+        self.message = "call delete()"
+        response(data={"message": self.message})
+
 
 if __name__ == '__main__':
     FORMAT = '%(asctime)s - %(levelname)s - %(lineno)s - %(message)s'

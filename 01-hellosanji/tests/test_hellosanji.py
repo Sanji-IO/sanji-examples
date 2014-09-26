@@ -49,6 +49,22 @@ class TestHellosanjiClass(unittest.TestCase):
             self.assertEqual(data, {"message": "Invaild Input."})
         self.hellosanji.put(message=message, response=resp2, test=True)
 
+    def test_post(self):
+        message = Message({"data": {"message": "call post()"}})
+
+        # case 1: post successfully
+        def resp1(code=200, data=None):
+            self.assertEqual(self.hellosanji.message, "call post()")
+
+        self.hellosanji.post(message=message, response=resp1, test=True)
+
+        # case 2: post bad request
+        def resp2(code=200, data=None):
+            self.assertEqual(400, code)
+            self.assertEqual(data, {"message": "Invalid Post Input"})
+
+        self.hellosanji.post(message=message, response=resp2, test=True)
+
 
 if __name__ == "__main__":
     unittest.main()
