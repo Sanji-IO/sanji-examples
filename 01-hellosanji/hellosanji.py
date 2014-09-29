@@ -40,10 +40,10 @@ class Hellosanji(Sanji):
         return response(code=400, data={"message": "Invalid Delete Input."})
 
 
-if __name__ == '__main__':
-    FORMAT = '%(asctime)s - %(levelname)s - %(lineno)s - %(message)s'
+if __name__ == "__main__":
+    FORMAT = "%(asctime)s - %(levelname)s - %(lineno)s - %(message)s"
     logging.basicConfig(level=0, format=FORMAT)
-    logger = logging.getLogger('Hellosanji')
+    logger = logging.getLogger("Hellosanji")
 
     hellosanji = Hellosanji(connection=Mqtt())
     hellosanji.start()
