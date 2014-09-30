@@ -11,7 +11,7 @@ from sanji.connection.mqtt import Mqtt
 
 class Hellosanji(Sanji):
 
-    def init(self):
+    def init(self, *args, **kwargs):
         path_root = os.path.abspath(os.path.dirname(__file__))
         self.model = ModelInitiator("hellosanji", path_root)
         self.message = "Hello Sanji!"
