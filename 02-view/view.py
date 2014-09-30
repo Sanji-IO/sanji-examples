@@ -32,10 +32,10 @@ class View(Sanji):
             print res.to_json()
 
 
-if __name__ == '__main__':
-    FORMAT = '%(asctime)s - %(levelname)s - %(lineno)s - %(message)s'
+if __name__ == "__main__":
+    FORMAT = "%(asctime)s - %(levelname)s - %(lineno)s - %(message)s"
     logging.basicConfig(level=0, format=FORMAT)
-    logger = logging.getLogger('Hellosanji')
+    logger = logging.getLogger("Hellosanji")
 
     view = View(connection=Mqtt())
     view.start()

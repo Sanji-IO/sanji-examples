@@ -10,7 +10,7 @@ from sanji.connection.mockup import Mockup
 from sanji.message import Message
 
 try:
-    sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../')
+    sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../")
     from hellosanji import Hellosanji
 except ImportError as e:
     print "Please check the python PATH for import test module. (%s)" \
