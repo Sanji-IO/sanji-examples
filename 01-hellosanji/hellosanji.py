@@ -2,14 +2,18 @@
 # -*- coding: UTF-8 -*-
 
 import logging
+import os
 from sanji.core import Sanji
 from sanji.core import Route
+from sanji.model_initiator import ModelInitiator
 from sanji.connection.mqtt import Mqtt
 
 
 class Hellosanji(Sanji):
 
     def init(self):
+        path_root = os.path.abspath(os.path.dirname(__file__))
+        self.model = ModelInitiator("hellosanji", path_root)
         self.message = "Hello Sanji!"
 
     @Route(methods="get", resource="/hellosanji")
