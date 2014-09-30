@@ -9,7 +9,7 @@ from sanji.connection.mqtt import Mqtt
 
 class Hellosanji(Sanji):
 
-    def init(self):
+    def init(self, *args, **kwargs):
         self.message = "Hello Sanji!"
 
     @Route(methods="get", resource="/hellosanji")
