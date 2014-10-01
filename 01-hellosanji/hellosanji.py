@@ -2,19 +2,43 @@
 # -*- coding: UTF-8 -*-
 
 import logging
+import os
 from sanji.core import Sanji
 from sanji.core import Route
+from sanji.model_initiator import ModelInitiator
 from sanji.connection.mqtt import Mqtt
 
 
 class Hellosanji(Sanji):
 
     def init(self, *args, **kwargs):
+        path_root = os.path.abspath(os.path.dirname(__file__))
+        self.model = ModelInitiator("hellosanji", path_root)
         self.message = "Hello Sanji!"
 
     @Route(methods="get", resource="/hellosanji")
     def get(self, message, response):
-        response(data={"message": self.message})
+
+        if "collection" in message.query:
+            if message.query["collection"] == "true":
+                # collection=true
+                return response(
+                    data={"collection": self.model.db["conversationList"]})
+
+        if "id" in message.param:
+            rsp_msg = None
+            for item in self.model.db["conversationList"]:
+                if item["id"] == message.param["id"]:
+                    # information of specific id
+                    rsp_msg = item["message"]
+
+            return response(data=rsp_msg)
+
+        # capability
+        id_list = []
+        for item in self.model.db["conversationList"]:
+            id_list.append(item["id"])
+        return response(data=id_list)
 
     @Route(methods="put", resource="/hellosanji")
     def put(self, message, response):
@@ -32,10 +56,10 @@ class Hellosanji(Sanji):
 
     @Route(methods="delete", resource="/hellosanji/:id")
     def delete(self, message, response):
-        if hasattr(message, "param"):
-            if "id" in message.param:
-                self.message = "delete index: %s" % message.param["id"]
-                return response()
+
+        if "id" in message.param:
+            self.message = "delete index: %s" % message.param["id"]
+            return response()
 
         return response(code=400, data={"message": "Invalid Delete Input."})
 
