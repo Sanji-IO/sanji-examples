@@ -22,7 +22,8 @@ class Hellosanji(Sanji):
         if "collection" in message.query:
             if message.query["collection"] == "true":
                 # collection=true
-                return response(data=self.model.db["conversationList"])
+                return response(
+                    data={"collection": self.model.db["conversationList"]})
 
         if "id" in message.param:
             rsp_msg = None

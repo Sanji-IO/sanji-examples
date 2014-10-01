@@ -63,7 +63,7 @@ class TestHellosanjiClass(unittest.TestCase):
 
         def resp3(code=200, data=None):
             self.assertEqual(code, 200)
-            self.assertEqual(data, ret_msg)
+            self.assertEqual(data, {"collection": ret_msg})
         self.hellosanji.get(message=message, response=resp3, test=True)
 
     def test_put(self):
