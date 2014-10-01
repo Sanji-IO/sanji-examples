@@ -1,0 +1,13 @@
+{
+	"enable": 1,
+	"conversationList": [
+		{
+			"id": 1,
+			"message": "Hello World"
+		},
+		{
+			"id": 2,
+			"message": "Hello MOXA"
+		}
+	]
+}

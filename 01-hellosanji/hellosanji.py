@@ -19,20 +19,19 @@ class Hellosanji(Sanji):
     @Route(methods="get", resource="/hellosanji")
     def get(self, message, response):
 
-        if hasattr(message, "param"):
-            if "query" in message.param:
-                if "collection" in message.param["query"]:
-                    if message.param["query"]["collection"] == "true":
-                        # collection=true
-                        return response(data=self.model.db["conversationList"])
-            if "id" in message.param:
-                rsp_msg = None
-                for item in self.model.db["conversationList"]:
-                    if item["id"] == message.param["id"]:
-                        # information of specific id
-                        rsp_msg = item["message"]
+        if "collection" in message.query:
+            if message.query["collection"] == "true":
+                # collection=true
+                return response(data=self.model.db["conversationList"])
 
-                return response(data=rsp_msg)
+        if "id" in message.param:
+            rsp_msg = None
+            for item in self.model.db["conversationList"]:
+                if item["id"] == message.param["id"]:
+                    # information of specific id
+                    rsp_msg = item["message"]
+
+            return response(data=rsp_msg)
 
         # capability
         id_list = []
@@ -56,10 +55,10 @@ class Hellosanji(Sanji):
 
     @Route(methods="delete", resource="/hellosanji/:id")
     def delete(self, message, response):
-        if hasattr(message, "param"):
-            if "id" in message.param:
-                self.message = "delete index: %s" % message.param["id"]
-                return response()
+
+        if "id" in message.param:
+            self.message = "delete index: %s" % message.param["id"]
+            return response()
 
         return response(code=400, data={"message": "Invalid Delete Input."})
 

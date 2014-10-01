@@ -28,17 +28,22 @@ class TestHellosanjiClass(unittest.TestCase):
         self.hellosanji = None
 
     def test_get(self):
+
         # 1. capability
+        message = Message({"data": {"message": "call get()"},
+                          "query": {}, "param": {}})
+
         def resp1(code=200, data=None):
             self.assertEqual(code, 200)
             self.assertEqual(data, [1, 2])
 
-        self.hellosanji.get(message=None, response=resp1, test=True)
+        self.hellosanji.get(message=message, response=resp1, test=True)
 
         # 2. id
         message = Message(
             {"data": {"message": "call get()"},
-             "param": {"id": 2}})
+             "param": {"id": 2},
+             "query": {}})
 
         def resp2(code=200, data=None):
             self.assertEqual(code, 200)
@@ -49,7 +54,8 @@ class TestHellosanjiClass(unittest.TestCase):
         # 3. collection get
         message = Message(
             {"data": {"message": "call get()"},
-             "param": {"query": {"collection": "true"}}})
+             "query": {"collection": "true"},
+             "param": {}})
 
         ret_msg = []
         ret_msg.append({"id": 1, "message": "Hello World"})
