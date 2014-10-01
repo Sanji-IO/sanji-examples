@@ -18,7 +18,27 @@ class Hellosanji(Sanji):
 
     @Route(methods="get", resource="/hellosanji")
     def get(self, message, response):
-        response(data={"message": self.message})
+
+        if hasattr(message, "param"):
+            if "query" in message.param:
+                if "collection" in message.param["query"]:
+                    if message.param["query"]["collection"] == "true":
+                        # collection=true
+                        return response(data=self.model.db["conversationList"])
+            if "id" in message.param:
+                rsp_msg = None
+                for item in self.model.db["conversationList"]:
+                    if item["id"] == message.param["id"]:
+                        # information of specific id
+                        rsp_msg = item["message"]
+
+                return response(data=rsp_msg)
+
+        # capability
+        id_list = []
+        for item in self.model.db["conversationList"]:
+            id_list.append(item["id"])
+        return response(data=id_list)
 
     @Route(methods="put", resource="/hellosanji")
     def put(self, message, response):

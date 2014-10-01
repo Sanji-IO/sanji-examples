@@ -28,10 +28,37 @@ class TestHellosanjiClass(unittest.TestCase):
         self.hellosanji = None
 
     def test_get(self):
-        def resp(code=200, data=None):
+        # 1. capability
+        def resp1(code=200, data=None):
             self.assertEqual(code, 200)
-            self.assertEqual(data, {"message": self.hellosanji.message})
-        self.hellosanji.get(message=None, response=resp, test=True)
+            self.assertEqual(data, [1, 2])
+
+        self.hellosanji.get(message=None, response=resp1, test=True)
+
+        # 2. id
+        message = Message(
+            {"data": {"message": "call get()"},
+             "param": {"id": 2}})
+
+        def resp2(code=200, data=None):
+            self.assertEqual(code, 200)
+            self.assertEqual(data, "Hello MOXA")
+
+        self.hellosanji.get(message=message, response=resp2, test=True)
+
+        # 3. collection get
+        message = Message(
+            {"data": {"message": "call get()"},
+             "param": {"query": {"collection": "true"}}})
+
+        ret_msg = []
+        ret_msg.append({"id": 1, "message": "Hello World"})
+        ret_msg.append({"id": 2, "message": "Hello MOXA"})
+
+        def resp3(code=200, data=None):
+            self.assertEqual(code, 200)
+            self.assertEqual(data, ret_msg)
+        self.hellosanji.get(message=message, response=resp3, test=True)
 
     def test_put(self):
         message = Message({"data": {"message": "hello kitty"}})
