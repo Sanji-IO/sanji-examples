@@ -8,6 +8,11 @@ from sanji.core import Route
 from sanji.model_initiator import ModelInitiator
 from sanji.connection.mqtt import Mqtt
 
+from voluptuous import Schema
+from voluptuous import Required
+from voluptuous import All
+from voluptuous import Length
+
 
 class Hellosanji(Sanji):
 
@@ -47,7 +52,14 @@ class Hellosanji(Sanji):
             return response()
         return response(code=400, data={"message": "Invaild Input."})
 
-    @Route(methods="post", resource="/hellosanji")
+    # See more example about schema define:
+    # Note: This feature is not supports unittest now
+    #   https://github.com/alecthomas/voluptuous
+    post_schema = Schema({
+        Required("message"): All(str, Length(min=1, max=20))
+    })
+
+    @Route(methods="post", resource="/hellosanji", schema=post_schema)
     def post(self, message, response):
         if hasattr(message, "data"):
             self.message = {"id": 53}
