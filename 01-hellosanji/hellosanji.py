@@ -27,12 +27,11 @@ class Hellosanji(Sanji):
         if "collection" in message.query:
             if message.query["collection"] == "true":
                 # collection=true
-                return response(
-                    data={"collection": self.model.db["conversationList"]})
+                return response(data=self.model.db)
 
         if "id" in message.param:
             rsp_msg = None
-            for item in self.model.db["conversationList"]:
+            for item in self.model.db["collection"]:
                 if item["id"] == message.param["id"]:
                     # information of specific id
                     rsp_msg = item["message"]
@@ -41,7 +40,7 @@ class Hellosanji(Sanji):
 
         # capability
         id_list = []
-        for item in self.model.db["conversationList"]:
+        for item in self.model.db["collection"]:
             id_list.append(item["id"])
         return response(data=id_list)
 

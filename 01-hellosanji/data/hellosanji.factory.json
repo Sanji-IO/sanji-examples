@@ -1,6 +1,6 @@
 {
 	"enable": 1,
-	"conversationList": [
+	"collection": [
 		{
 			"id": 1,
 			"message": "Hello World"
