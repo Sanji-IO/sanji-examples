@@ -8,6 +8,7 @@ from sanji.core import Route
 from sanji.model_initiator import ModelInitiator
 from sanji.connection.mqtt import Mqtt
 
+
 class Hellosanji(Sanji):
 
     def init(self, *args, **kwargs):
