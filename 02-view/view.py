@@ -30,12 +30,13 @@ class View(Sanji):
             res = self.publish.put("/hellosanji",
                                    data={"message": "Hello Sanji! %s" % count})
             print res.to_json()
+            self.stop()
 
 
 if __name__ == "__main__":
     FORMAT = "%(asctime)s - %(levelname)s - %(lineno)s - %(message)s"
     logging.basicConfig(level=0, format=FORMAT)
-    logger = logging.getLogger("Hellosanji")
+    logger = logging.getLogger('View')
 
     view = View(connection=Mqtt())
     view.start()
