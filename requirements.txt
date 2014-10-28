@@ -1,0 +1,5 @@
+flake8
+coveralls
+git+https://github.com/Sanji-IO/sanji.git#egg=sanji
+paho-mqtt
+voluptuous
