@@ -74,6 +74,10 @@ class Hellosanji(Sanji):
 
         return response(code=400, data={"message": "Invalid Delete Input."})
 
+    @Route(methods="get", resource="/hellosanji/:id/:uid")
+    def get_uid(self, message, response):
+        msg = "id: %s, uid: %s" % (message.param["id"], message.param["uid"])
+        return response(data={"message": msg})
 
 if __name__ == "__main__":
     FORMAT = "%(asctime)s - %(levelname)s - %(lineno)s - %(message)s"

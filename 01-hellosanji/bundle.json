@@ -21,6 +21,10 @@
     {
       "methods": ["get", "put", "delete"],
       "resource": "/hellosanji/:id"
+    },
+    {
+      "methods": "get",
+      "resource": "/hellosanji/:id/:uid"
     }
   ]
 }
