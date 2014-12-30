@@ -1,0 +1,25 @@
+{
+  "name": "Event",
+  "version": "1.0",
+  "author": "Zack YL Shih",
+  "email": "ZackYL.Shih@moxa.com",
+  "description": "Event example for Sanji SDK",
+  "license": "MOXA",
+  "main": "event.py",
+  "argument": "",
+  "priority": 20,
+  "hook": [],
+  "dependencies": {},
+  "repository": "",
+  "role": "model",
+  "ttl": 10,
+  "resources": [
+    {
+      "role": "view",
+      "resource": "/network/cellulars/ipchange"
+    },
+    {
+      "resource": "/network/dhcp"
+    }
+  ]
+}
